@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text to Speech</title>
     <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -24,7 +26,7 @@
         .main {
             width: 70%;
             max-width: 800px;
-            min-width:100px;
+            min-width: 100px;
         }
 
         .container {
@@ -33,17 +35,18 @@
             max-width: 100%;
             max-height: 80vh;
             background-size: 100%;
-            overflow-y: scroll;
             display: flex;
             flex-direction: column;
             margin: auto;
             padding: 20px;
             box-shadow: 2px 3px 20px black, 0 0 60px #8a4d0f inset;
             background: #fffef0;
-            filter: url(#wavy2);
+
         }
 
         textarea {
+            outline: none;
+            resize: none;
             width: calc(100% - 20px);
             border-radius: 5px;
             border: none;
@@ -70,7 +73,7 @@
             bottom: 0;
             top: 10;
             margin-left: 100px;
-            width: calc(100% - 20px);
+            width: calc(33% - 20px);
             margin: auto;
         }
 
@@ -81,6 +84,21 @@
         svg {
             position: fixed;
             top: -1000px;
+        }
+        .btns{
+            display: flex;
+            flex-direction: row;
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                align-items: flex-start;
+                margin-top: 20px;
+                max-height: 90vh;
+            }
+            .btname{
+                display: none;
+            }
         }
     </style>
 </head>
@@ -98,13 +116,40 @@
             <textarea id="input" placeholder="Type something..." oninput="adjustTextareaHeight(this)"></textarea>
         </div>
         <br><br>
-        <button onclick="speak()">Speak</button>
+        <div class="btns">
+            <button class="fa fa-pause" onclick="pauseSpeech()"><span class="btname">&nbsp;&nbsp;&nbsp;&nbsp;Pause</span></button>
+            <button class="fa fa-microphone" onclick="speak()"><span class="btname">&nbsp;&nbsp;&nbsp;&nbsp;Speak</span></button>
+            <button class="fa fa-stop" onclick="stopSpeech()"><span class="btname">&nbsp;&nbsp;&nbsp;&nbsp;Stop</span></button>
+        </div>
     </div>
     <script>
+        let utterance;
+
         function speak() {
             var text = document.getElementById("input").value;
-            var utterance = new SpeechSynthesisUtterance(text);
+            console.log("Text to speak:", text);
+            if (text.trim() === "") {
+                console.log("No text provided.");
+                return;
+            }
+            utterance = new SpeechSynthesisUtterance(text);
             speechSynthesis.speak(utterance);
+            console.log("Speech synthesis initiated.");
+        }
+
+        function pauseSpeech() {
+            if (speechSynthesis.speaking && !speechSynthesis.paused) {
+                speechSynthesis.pause();
+                console.log("Speech paused.");
+            } else if (speechSynthesis.paused) {
+                speechSynthesis.resume();
+                console.log("Speech resumed.");
+            }
+        }
+
+        function stopSpeech() {
+            speechSynthesis.cancel();
+            console.log("Speech stopped.");
         }
 
         function adjustTextareaHeight(textarea) {
@@ -112,9 +157,10 @@
             textarea.style.height = textarea.scrollHeight + 'px';
         }
 
-        window.unload = function () {
+        window.onload = function () {
             var u = new SpeechSynthesisUtterance("Welcome");
             speechSynthesis.speak(u);
+            console.log("Welcome message spoken.");
         }
     </script>
 </body>
