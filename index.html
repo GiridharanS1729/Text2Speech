@@ -58,7 +58,8 @@
             min-height: 100px;
             background: transparent;
             color: #000000;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: "Fira Code";
+            font-weight: 550;
         }
 
         button {
@@ -78,8 +79,6 @@
             margin: auto;
         }
 
-       
-
         svg {
             position: fixed;
             top: -1000px;
@@ -88,8 +87,10 @@
             display: flex;
             flex-direction: row;
         }
-        .btns button:hover{
-            background-color:#FF5349;
+        button:hover{
+            background-color:#ff2200;
+            transform: scale(1.02);
+            box-shadow: 0px 0px 10px #000;
         }
 
         @media only screen and (max-width: 600px) {
@@ -108,13 +109,7 @@
 </head>
 
 <body>
-    <svg>
-        <filter id="wavy2">
-            <feTurbulence x="0" y="0" baseFrequency="0.0005" numOctaves="50" seed="1"></feTurbulence>
-            <feDisplacementMap in="SourceGraphic" scale="20" />
-        </filter>
-    </svg>
-
+    
     <div class="main">
         <div class="container">
             <textarea id="input" placeholder="Type something..." oninput="adjustTextareaHeight(this)"></textarea>
@@ -161,11 +156,6 @@
             textarea.style.height = textarea.scrollHeight + 'px';
         }
 
-        window.onload = function () {
-            var u = new SpeechSynthesisUtterance("Welcome");
-            speechSynthesis.speak(u);
-            console.log("Welcome message spoken.");
-        }
     </script>
 </body>
 
