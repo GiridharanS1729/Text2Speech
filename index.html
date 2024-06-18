@@ -34,7 +34,7 @@
             border-radius: 10px;
             text-align: center;
             max-width: 100%;
-            max-height: 80vh;
+            max-height: 70vh;
             background-size: 100%;
             display: flex;
             flex-direction: column;
@@ -42,7 +42,6 @@
             padding: 20px;
             box-shadow: 2px 3px 20px black, 0 0 60px #8a4d0f inset;
             background: #fffef0;
-
         }
 
         textarea {
@@ -60,8 +59,12 @@
             color: #000000;
             font-family: "Fira Code";
             font-weight: 550;
+            caret-color: #f00;
         }
-        textarea::selection{color:#bb4800;}
+
+        textarea::selection {
+            color: #bb4800;
+        }
 
         button {
             background-color: #ff5722;
@@ -84,20 +87,22 @@
             position: fixed;
             top: -1000px;
         }
-        .btns{
+
+        .btns {
             display: flex;
             flex-direction: row;
         }
-        button:hover{
-            background-color:#ff2200;
+
+        button:hover {
+            background-color: #ff2200;
             transform: scale(1.02);
             box-shadow: 0px 0px 10px #000;
         }
-        .credits{
+
+        .credits {
             font-size: 20px;
-            color: #aa0;
+            color: #301000;
             margin-bottom: 10px;
-            margin-left:20vw;
             opacity: 0.8;
             font-weight: 600;
             position: fixed;
@@ -106,7 +111,7 @@
             font-family: arial;
             padding-left: 10px;
             padding-right: 10px;
-            -webkit-text-stroke: #ff0 0.5px;
+            -webkit-text-stroke: #fa4f00b2 0.3px;
             background-color: #fff1;
             border-radius: 5px;
         }
