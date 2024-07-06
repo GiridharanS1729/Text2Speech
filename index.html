@@ -7,132 +7,13 @@
     <title>Text to Speech</title>
     <link rel="shortcut icon" href="./assets/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./assets/style.css">
+    <script src="./assets/script.js"></script>
 
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: url('./assets/bg.png') 1px;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100vw;
-            margin: 0;
-        }
-
-        .main {
-            width: 70%;
-            max-width: 800px;
-            min-width: 100px;
-        }
-
-        .container {
-            border-radius: 10px;
-            text-align: center;
-            max-width: 100%;
-            max-height: 70vh;
-            background-size: 100%;
-            display: flex;
-            flex-direction: column;
-            margin: auto;
-            padding: 20px;
-            box-shadow: 2px 3px 20px black, 0 0 60px #8a4d0f inset;
-            background: #fffef0;
-        }
-
-        textarea {
-            outline: none;
-            resize: none;
-            width: calc(100% - 20px);
-            border-radius: 5px;
-            border: none;
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 20px;
-            overflow-y: scroll;
-            min-height: 100px;
-            background: transparent;
-            color: #000000;
-            font-family: "Fira Code";
-            font-weight: 550;
-            caret-color: #f00;
-        }
-
-        textarea::selection {
-            color: #bb4800;
-        }
-
-        button {
-            background-color: #ff5722;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            position: relative;
-            bottom: 0;
-            top: 10;
-            margin-left: 100px;
-            width: calc(33% - 20px);
-            margin: auto;
-        }
-
-        svg {
-            position: fixed;
-            top: -1000px;
-        }
-
-        .btns {
-            display: flex;
-            flex-direction: row;
-        }
-
-        button:hover {
-            background-color: #ff2200;
-            transform: scale(1.02);
-            box-shadow: 0px 0px 10px #000;
-        }
-
-        .credits {
-            font-size: 20px;
-            color: #FFA500;
-            margin-bottom: 10px;
-            opacity: 0.8;
-            font-weight: 600;
-            position: fixed;
-            bottom: 20px;
-            backdrop-filter: blur(80px);
-            font-family: arial;
-            padding-left: 10px;
-            padding-right: 10px;
-            -webkit-text-stroke: #000080b1 0.3px;
-            background-color: #fff1;
-            border-radius: 5px;
-        }
-
-        @media only screen and (max-width: 600px) {
-            body {
-                align-items: flex-start;
-                margin-top: 20px;
-                max-height: 90vh;
-                background-size:cover;
-                background: url('./assets/bg.png') 572.91666667in;
-            }
-            .btname{
-                display: none;
-            }
-        }
-    </style>
+    
 </head>
 
 <body>
-    
     <div class="main">
         <div class="container">
             <textarea id="input" placeholder="Type something..." oninput="adjustTextareaHeight(this)"></textarea>
@@ -145,57 +26,6 @@
         </div>
         </div>
         <p class="credits">Giridharan S &copy; 2024</p>
-    
-        <script>
-        let utterance;
-// let pauseb = document.getElementsByClassName("pause").style.backgroundColor;
-// let pausec = document.getElementsByClassName("pause").style.color;
-// let speakb = document.getElementsByClassName("speak").style.backgroundColor;
-// let speakc = document.getElementsByClassName("speak").style.color;
-// let stopb = document.getElementsByClassName("stop").style.backgroundColor;
-// let stopc = document.getElementsByClassName("stop").style.color;
-// let bg = "#0f0";
-// let cl = "#00f";
-
-function speak() {
-    var text = document.getElementById("input").value;
-    console.log("Text to speak:", text);
-    if (text.trim() === "") {
-        console.log("No text provided.");
-        return;
-    }
-    utterance = new SpeechSynthesisUtterance(text);
-    speechSynthesis.speak(utterance);
-    // speakb = bg;
-    // speakc = cl;
-    console.log("Speech synthesis initiated.");
-}
-
-function pauseSpeech() {
-    if (speechSynthesis.speaking && !speechSynthesis.paused) {
-        speechSynthesis.pause();
-        // pauseb = bg;
-        // pausec = cl;
-        console.log("Speech paused.");
-    } else if (speechSynthesis.paused) {
-        speechSynthesis.resume();
-        console.log("Speech resumed.");
-    }
-}
-
-function stopSpeech() {
-    speechSynthesis.cancel();
-    // stopb = bg;
-    // stopc = cl;
-    console.log("Speech stopped.");
-}
-
-function adjustTextareaHeight(textarea) {
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
-}
-
-    </script>
 </body>
 
 </html>
